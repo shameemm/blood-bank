@@ -14,9 +14,23 @@ def display(request):
     else:
                 return render(request, 'login.html')
 
-# def logout(request):
-#     del request.session['user_username']
-    
-    
-#     return redirect('/')
+def add_donor(request):
+    if request.method == 'POST':
+        name = request.POST['name']
+        age = request.POST['age']
+        place = request.POST['place']
+        phone = request.POST['phone']
+        bgrp = request.POST['bgrp']
+        donor = Details.objects.create(name=name, age=age, place=place, phone=phone, bgrp=bgrp)
+        donor.save()
+
+        return redirect('display')
+    else:
+        user = request.session.get('user_username')
+        if user is not None:
+            print(user)
+            
+            return render(request, 'add_donor.html');
+        else:
+            return render(request, 'login.html')
            
