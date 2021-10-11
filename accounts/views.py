@@ -6,9 +6,48 @@ from django.http import JsonResponse
 
 # Create your views here.
 def login(request):
-    # user = 'not logged in'
+    user = 'not logged in'
+    if request.method =='POST':
+        username = request.POST['username']
+        password = request.POST['password']
 
-    return render(request, 'login.html')
+        user = auth.authenticate(username=username,password=password)
+        
+        
+        us = User.get_username
+        
+        if user is not None:
+            
+            # return redirect('display')
+            print(dir(request.session))
+            request.session['user_id'] = user.id
+            request.session['user_username'] = user.username
+            user = request.session.get('session_key')
+           
+            
+            
+            return JsonResponse(
+                {'success': True},
+                safe=False
+            )
+        else:
+            messages.info(request, "Invalid Credentials")
+            # return redirect('')
+            return JsonResponse(
+                {'success': False},
+                safe=False
+            )
+    else:
+        
+        user = request.session.get('user_username')
+        print(user)
+       
+        if user is not None:
+            print(user)
+            
+            return redirect('display')
+        else:
+            return render(request, 'login.html')
 
 def register(request):
     if request.method =='POST':
@@ -39,5 +78,11 @@ def register(request):
             return redirect('register')
     else:
         return render(request, 'register.html')
+
+def logout(request):
+    del request.session['user_username']
+    
+    
+    return redirect('/')
     
     

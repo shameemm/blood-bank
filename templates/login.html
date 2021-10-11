@@ -16,6 +16,7 @@ html {
   }
   
   body {
+    background-image: "static/bg-img/24091.jpg";
     font-family: "Poppins", sans-serif;
     height: 100vh;
   }
@@ -147,7 +148,7 @@ html {
   }
   
   input[type=text]:focus {
-    background-color: #fff;
+    
     border-bottom: 2px solid #5fbae9;
   }
   
@@ -274,7 +275,7 @@ html {
     </style>
 </head>
 
-<body>
+<body >
   
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
@@ -331,14 +332,14 @@ html {
       $('#spanerror').html('Enter Valid password ')
     }else{
       $.ajax({
-        url:'accounts/login',
+        url:'',
         method:'POST',
         data:data,
         dataType:'json',
         success:function(data){
           if(data.success){
             alert("Login Succesful")
-            window.location.replace('/show')
+            window.location.replace('/display')
           }else{
             $('#spanerror').html('Invalid Username and Passwod')
           }
