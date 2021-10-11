@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -273,9 +271,7 @@ html {
   
     </style>
 </head>
-
 <body>
-  
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -287,67 +283,31 @@ html {
 
     <!-- Icon -->
     
-    <h1>Login</h1>
+    <h1>Signup</h1>
     <!-- Login Form -->
-    <form action="login" method="POST">
+    <form action="register" method="POST">
         {%csrf_token%}
-      <input type="text" id="uname" class="fadeIn second" name="username" placeholder="username">
-      <input type="text" id="pwd" class="fadeIn third" name="password" placeholder="password">
-      <input type="button" id="btn1" class="fadeIn fourth" value="Log In">
-      <br>
-      
-      <br>
-      <span id="spanerror" style="color: red;"></span>
+      <input type="text"  class="fadeIn second" name="first_name" placeholder="First name">
+      <input type="text" id="last_name" class="fadeIn second" name="last_name" placeholder="Last Name">
+      <input type="text" id="uname" class="fadeIn second" name="username" placeholder="Username">
+      <input type="text" id="uname" class="fadeIn second" name="email" placeholder="email">
+      <input type="text" id="pwd" class="fadeIn second" name="password1" placeholder="Password">
+      <input type="text" id="pwd" class="fadeIn third" name="password2" placeholder="Confirm Password">
+      <input type="submit" class="fadeIn fourth" value="Signup">
       <div>
         {%for message in messages%}
           <h3 class="text-danger">{{message}}</h3>
         {% endfor %}
       </div>
+
     </form>
 
     <!-- Remind Passowrd -->
     <div id="formFooter">
-      <a class="underlineHover" href="register">SignUp</a>
+      <a class="underlineHover" href="login">login</a>
     </div>
-
 
   </div>
 </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script>
-  $("#btn1").click(() =>{
-    
-    var username = $('#uname').val()
-    var password = $('#pwd').val()
-    console.log(username, password)
-    var data = {
-      'csrfmiddlewaretoken' : '{{csrf_token}}',
-      'username' : username,
-      'password' : password
-    }
-    if(username == ''){
-      $('#spanerror').html('Enter Valid Username ')
-    }else if(password == ''){
-      $('#spanerror').html('Enter Valid password ')
-    }else{
-      $.ajax({
-        url:'accounts/login',
-        method:'POST',
-        data:data,
-        dataType:'json',
-        success:function(data){
-          if(data.success){
-            alert("Login Succesful")
-            window.location.replace('/show')
-          }else{
-            $('#spanerror').html('Invalid Username and Passwod')
-          }
-        }
-      })
-    }
-
-  })
-</script>
-
 </body>
-
+</html>

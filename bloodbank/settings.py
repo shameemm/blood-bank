@@ -52,7 +52,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'bloodbank.urls'
+ROOT_URLCONF = 'bbank.urls'
 
 TEMPLATES = [
     {
