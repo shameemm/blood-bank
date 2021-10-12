@@ -33,7 +33,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'django_heroku'
+    'django_herokubbank'
     'bbank.apps.BbankConfig',
     'django.contrib.admin',
     'django.contrib.auth',
