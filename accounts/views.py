@@ -80,7 +80,8 @@ def register(request):
         return render(request, 'register.html')
 
 def logout(request):
-    del request.session['user_username']
+    # del request.session['user_username']
+    request.session.flush()
     
     
     return redirect('/')
